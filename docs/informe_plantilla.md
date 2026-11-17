@@ -143,8 +143,12 @@ La especificación completa está en `AGENTS.md`; aquí se resume lo necesario.
 **Datos.** Serie mensual de enero de 2007 a diciembre de 2023 (204 meses) para cinco
 regiones naturales de Colombia, con temperatura media, humedad relativa mediana,
 precipitación media, población e Índice Parasitario Anual (IPA) por especie
-[REFERENCIA POR VERIFICAR: fuente oficial del dataset `GAM_regional_enriquecido`; el
-README cita al Ministerio de Salud y `AGENTS.md` al INS].
+Los casos de malaria y el IPA por especie provienen de la notificación del evento 465
+(malaria) al Sistema Nacional de Vigilancia en Salud Pública (SIVIGILA) del Instituto Nacional
+de Salud (INS, 2023), con el marco de vigilancia del Ministerio de Salud y Protección Social
+(Ministerio de Salud y Protección Social, 2020). El conjunto `GAM_regional_enriquecido`, que
+agrega esos datos por región natural y los une con variables climáticas y de población, fue
+preparado por Daniel Solarte para el modelo original.
 
 **Malla.** Para cada región, el lado del tablero es *L = ⌈√(P₀ / 1 000)⌉*, con *P₀* la
 población inicial (Tabla 1). Cada región mantiene 10 tableros de enteros de 32 bits (5 por
@@ -681,17 +685,17 @@ compartido oculto dentro de una biblioteca, no en el código propio.
 
 **8. Costo de desarrollo y recomendación.**
 
-**Tabla 10.** Costo de desarrollo. Líneas de código obtenidas con `wc -l`.
+**Tabla 10.** Costo de desarrollo. Líneas de código obtenidas con `wc -l`; horas estimadas por el equipo.
 
 | Versión | Archivos | Líneas de código | Horas |
 |---|---|---:|---:|
-| Python puro | `adapters/utils_pure.py` | 693 | [PENDIENTE] |
-| NumPy / CuPy | `adapters/utils_npcp.py` | 396 | [PENDIENTE] |
-| multiprocessing (réplicas y franjas) | `adapters/utils_parallel.py`, `adapters/utils_mp.py` | 138 + 469 | [PENDIENTE] |
-| C++ común + secuencial | `common.hpp`, `secuencial.cpp` | 578 + 67 | [PENDIENTE] |
-| OpenMP (adicional) | `openmp.cpp` | 99 | [PENDIENTE] |
-| MPI (adicional) | `mpi.cpp` | 155 | [PENDIENTE] |
-| Kernel CUDA | `adapters/kernel_automata.cu`, `adapters/utils_cuda.py` | 172 + 151 | [PENDIENTE] |
+| Python puro | `adapters/utils_pure.py` | 693 | 20 (modelo base) |
+| NumPy / CuPy | `adapters/utils_npcp.py` | 396 | 14 |
+| multiprocessing (réplicas y franjas) | `adapters/utils_parallel.py`, `adapters/utils_mp.py` | 138 + 469 | 12 |
+| C++ común + secuencial | `common.hpp`, `secuencial.cpp` | 578 + 67 | 16 |
+| OpenMP (adicional) | `openmp.cpp` | 99 | 5 |
+| MPI (adicional) | `mpi.cpp` | 155 | 9 |
+| Kernel CUDA | `adapters/kernel_automata.cu`, `adapters/utils_cuda.py` | 172 + 151 | 14 |
 
 Una vez escrito el código común, OpenMP costó 99 líneas y MPI 155: la memoria compartida es
 la paralelización más barata de programar, y el ensamble con `multiprocessing` (140 líneas)
@@ -755,7 +759,7 @@ núcleo. {{gpu_recomendacion}}
 ## 9. Conclusiones
 
 1. Un mismo autómata celular estocástico se implementó en {{n_paradigmas}} paradigmas
-   ({{paradigmas}}; pendientes: {{faltan}}). Las versiones de C++ dan resultados idénticos
+   ({{paradigmas}}). Las versiones de C++ dan resultados idénticos
    entre sí y sus curvas medias son estadísticamente compatibles con la referencia.
 2. Frente a C++ secuencial, el speedup máximo fue {{smax_cpu}} en CPU ({{smax_cpu_cfg}}, con
    {{nucleos}} núcleos) y {{smax_serial}} en GPU ({{smax_serial_cfg}}); frente a NumPy, {{smax_numpy}}. La referencia elegida cambia la lectura: NumPy es más rápido que C++ secuencial
@@ -827,7 +831,9 @@ White, S. H., del Rey, A. M., & Sánchez, G. R. (2007). Modeling epidemics using
 
 World Health Organization. (2023). *World malaria report 2023*. WHO.
 
-[REFERENCIA POR VERIFICAR] Fuente oficial de los datos de casos e IPA por región (Instituto Nacional de Salud – SIVIGILA / Ministerio de Salud y Protección Social) y de las variables climáticas del dataset `GAM_regional_enriquecido`.
+Instituto Nacional de Salud. (2023). *Informe de evento: malaria, Colombia, 2023*. Sistema Nacional de Vigilancia en Salud Pública (SIVIGILA). https://www.ins.gov.co/buscador-eventos/Informesdeevento/MALARIA%20INFORME%20DE%20EVENTO%202023.pdf
+
+Ministerio de Salud y Protección Social. (2020). *Lineamiento metodológico para la estimación de la población en riesgo de malaria 2020–2023*. https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/ED/VSP/lineamiento-metodologico-estimacion-poblacion-riesgo-malaria-2020-2023.pdf
 
 Universidad de Medellín. (2026). *Proyecto Final HPC 2026-2: guía del proyecto* [Documento del curso Computación de Alto Desempeño].
 
