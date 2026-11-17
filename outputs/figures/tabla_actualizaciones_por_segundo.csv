@@ -1,13 +1,13 @@
 paradigma,region,L,workers,actualizaciones_por_s
 pure,amazonia,30,1,83400.53094904244
 pure,orinoquia,39,1,78749.72321652457
-numpy,amazonia,30,1,840802.7099851232
+numpy,amazonia,30,1,840802.7099851231
 numpy,orinoquia,39,1,1007913.6074553106
 numpy,pacifico,87,1,1688365.1890644345
 numpy,caribe,96,1,1388300.3838802471
 numpy,andina,154,1,1791917.3567150836
 multiprocessing,amazonia,30,4,1970705.1902831728
-multiprocessing,pacifico,87,4,4248543.109123426
+multiprocessing,pacifico,87,4,4248543.109123425
 multiprocessing_franjas,amazonia,30,4,170393.63750434556
 multiprocessing_franjas,pacifico,87,2,162207.382223974
 cupy,amazonia,30,1,136352.33476839884

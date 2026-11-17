@@ -129,7 +129,7 @@
 
 ## Diapositiva 11 — El freno oculto de OpenMP
 
-- Síntoma: OpenMP escalaba peor que MPI en la misma máquina
+- Síntoma (pruebas de desarrollo): OpenMP escalaba peor que MPI en la misma máquina
 - Causa: una función matemática de la biblioteca (lgamma) escribe una variable global que comparten todos los hilos
 - Los procesos de MPI no comparten memoria: no lo sufren
 - Solución: la versión sin estado compartido (lgamma_r). Mismos resultados
@@ -172,7 +172,7 @@
 
 - En Andina: CUDA (1,79 s) < CuPy (10,45 s) < NumPy (21,60 s) < OpenMP (26,94 s) < MPI (27,88 s) < C++ secuencial (63,21 s)
 
-**Cifras destacadas:** **×43,04** máximo vs C++ secuencial · CUDA con p = 1 en Caribe · **×14,79** máximo vs NumPy · CUDA con p = 1 en Caribe
+**Cifras destacadas:** **×2,35** máximo en CPU vs C++ secuencial · OpenMP con p = 4 en Andina · **×43,04** máximo en GPU vs C++ secuencial · CUDA en GPU, Caribe
 
 **Figura:** `outputs/figures/G3_tiempo_vs_tamano.png`
 
@@ -181,6 +181,7 @@
 ## Diapositiva 15 — ¿Hasta dónde escala?
 
 - Con más workers que núcleos el tiempo no mejora
+- Ni las réplicas sin comunicación pasan de eficiencia 0,65: el límite lo pone el portátil (turbo y temperatura), no el código
 - MPI: la comunicación pesa más en tableros pequeños y con más procesos
 
 **Cifras destacadas:** **0,644** fracción paralela OpenMP · **0,515** fracción paralela MPI · **0,816** fracción paralela multiprocessing
@@ -202,7 +203,7 @@
 ## Diapositiva 17 — Conclusiones
 
 - **1:** El mismo modelo corre en 9 paradigmas con resultados verificados.
-- **2:** Speedup máximo ×43,04 vs C++ secuencial y ×14,79 vs NumPy, con 4 núcleos.
+- **2:** Speedup máximo vs C++ secuencial: ×2,35 en CPU (4 núcleos) y ×43,04 en GPU.
 - **3:** La referencia importa: NumPy vs C++ mide sobre todo el algoritmo de muestreo.
 - **4:** Paralelizar bien exigió cuidar los números aleatorios y el estado compartido.
 - **5:** Medir sin validar no sirve: la versión más rápida fue la menos fiel cerca del umbral.

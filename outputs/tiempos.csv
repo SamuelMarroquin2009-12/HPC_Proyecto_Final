@@ -70,123 +70,123 @@ cpp_mpi,pacifico,87,1,3,20.889709279,,int32/float64,11th Gen Intel(R) Core(TM) i
 cpp_mpi,pacifico,87,1,4,20.997158141,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_mpi,pacifico,87,1,5,21.523819312,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_mpi,pacifico,87,2,1,14.768998677,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,amazonia,30,1,1,10.7720927734375,0.0007873280048370362,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,1,10.7720927734375,0.0007873280048369,int32/float64,Google Colab Tesla T4
 cpp_mpi,pacifico,87,2,2,16.255517554,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,amazonia,30,1,2,11.9688359375,0.000706719994544983,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,2,11.9688359375,0.0007067199945449,int32/float64,Google Colab Tesla T4
 cpp_mpi,pacifico,87,2,3,12.144001714,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,amazonia,30,1,3,10.4382685546875,0.0007571200132369995,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,3,10.4382685546875,0.0007571200132369,int32/float64,Google Colab Tesla T4
 cpp_mpi,pacifico,87,2,4,13.408925803,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,amazonia,30,1,4,10.4823759765625,0.0008378879874944687,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,4,10.4823759765625,0.0008378879874943999,int32/float64,Google Colab Tesla T4
 cpp_mpi,pacifico,87,2,5,14.220475597,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,amazonia,30,1,5,10.838857421875,0.0006226560026407242,int32/float64,Google Colab Tesla T4
-python_cupy,orinoquia,39,1,1,10.7867265625,0.0006994879990816117,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,5,10.838857421875,0.0006226560026407,int32/float64,Google Colab Tesla T4
+python_cupy,orinoquia,39,1,1,10.7867265625,0.0006994879990815,int32/float64,Google Colab Tesla T4
 cpp_mpi,pacifico,87,4,1,10.857912403,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,orinoquia,39,1,2,10.731107421875,0.0007374079823493958,int32/float64,Google Colab Tesla T4
+python_cupy,orinoquia,39,1,2,10.731107421875,0.0007374079823493,int32/float64,Google Colab Tesla T4
 cpp_mpi,pacifico,87,4,2,10.911736989,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,orinoquia,39,1,3,10.626453125,0.0008227200210094451,int32/float64,Google Colab Tesla T4
+python_cupy,orinoquia,39,1,3,10.626453125,0.0008227200210094,int32/float64,Google Colab Tesla T4
 cpp_mpi,pacifico,87,4,3,14.927278895,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,orinoquia,39,1,4,10.1502646484375,0.0008700800240039826,int32/float64,Google Colab Tesla T4
+python_cupy,orinoquia,39,1,4,10.1502646484375,0.0008700800240039001,int32/float64,Google Colab Tesla T4
 cpp_mpi,pacifico,87,4,4,11.117063351,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,orinoquia,39,1,5,10.37549609375,0.000850048005580902,int32/float64,Google Colab Tesla T4
+python_cupy,orinoquia,39,1,5,10.37549609375,0.0008500480055808,int32/float64,Google Colab Tesla T4
 cpp_mpi,pacifico,87,4,5,11.090928867,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_serial,orinoquia,39,1,1,5.844442688,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,pacifico,87,1,1,10.613439453125,0.0008320000171661377,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,1,10.613439453125,0.000832000017166,int32/float64,Google Colab Tesla T4
 cpp_serial,orinoquia,39,1,2,5.603437304,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_serial,orinoquia,39,1,3,6.634186491,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,pacifico,87,1,2,10.5443603515625,0.0009173439741134644,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,2,10.5443603515625,0.0009173439741133999,int32/float64,Google Colab Tesla T4
 cpp_serial,orinoquia,39,1,4,6.079762127,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,pacifico,87,1,3,10.4902431640625,0.0007480320036411286,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,3,10.4902431640625,0.000748032003641,int32/float64,Google Colab Tesla T4
 cpp_serial,orinoquia,39,1,5,5.444934883,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_openmp,orinoquia,39,4,1,3.598070415,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,pacifico,87,1,4,9.9984111328125,0.0008569920063018799,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,4,9.9984111328125,0.0008569920063018,int32/float64,Google Colab Tesla T4
 cpp_openmp,orinoquia,39,4,2,3.545709201,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_openmp,orinoquia,39,4,3,4.772336725,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_openmp,orinoquia,39,4,4,3.684680432,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,pacifico,87,1,5,10.26825390625,0.0008425280153751373,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,5,10.26825390625,0.000842528015375,int32/float64,Google Colab Tesla T4
 cpp_openmp,orinoquia,39,4,5,3.475269274,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_mpi,orinoquia,39,4,1,3.339975027,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_mpi,orinoquia,39,4,2,3.057039675,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_mpi,orinoquia,39,4,3,3.195736516,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_mpi,orinoquia,39,4,4,3.13641426,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,caribe,96,1,1,10.509642578125,0.000938368022441864,int32/float64,Google Colab Tesla T4
+python_cupy,caribe,96,1,1,10.509642578125,0.0009383680224418001,int32/float64,Google Colab Tesla T4
 cpp_mpi,orinoquia,39,4,5,3.279652125,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,caribe,96,1,2,10.4402412109375,0.0007734720110893249,int32/float64,Google Colab Tesla T4
-python_cupy,caribe,96,1,3,10.5401767578125,0.0007279039919376373,int32/float64,Google Colab Tesla T4
-python_cupy,caribe,96,1,4,9.980177734375,0.000960064023733139,int32/float64,Google Colab Tesla T4
-python_cupy,caribe,96,1,5,10.260640625,0.0013899200558662415,int32/float64,Google Colab Tesla T4
-python_cupy,andina,154,1,1,10.558689453125,0.0011068799793720245,int32/float64,Google Colab Tesla T4
+python_cupy,caribe,96,1,2,10.4402412109375,0.0007734720110892,int32/float64,Google Colab Tesla T4
+python_cupy,caribe,96,1,3,10.5401767578125,0.0007279039919375,int32/float64,Google Colab Tesla T4
+python_cupy,caribe,96,1,4,9.980177734375,0.0009600640237331,int32/float64,Google Colab Tesla T4
+python_cupy,caribe,96,1,5,10.260640625,0.0013899200558661002,int32/float64,Google Colab Tesla T4
+python_cupy,andina,154,1,1,10.558689453125,0.0011068799793719,int32/float64,Google Colab Tesla T4
 cpp_serial,caribe,96,1,1,32.895523011,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,andina,154,1,2,10.44543359375,0.0009698239862918853,int32/float64,Google Colab Tesla T4
-python_cupy,andina,154,1,3,11.0816923828125,0.001059328019618988,int32/float64,Google Colab Tesla T4
-python_cupy,andina,154,1,4,10.25251171875,0.0011442559957504273,int32/float64,Google Colab Tesla T4
+python_cupy,andina,154,1,2,10.44543359375,0.0009698239862918,int32/float64,Google Colab Tesla T4
+python_cupy,andina,154,1,3,11.0816923828125,0.0010593280196188,int32/float64,Google Colab Tesla T4
+python_cupy,andina,154,1,4,10.25251171875,0.0011442559957504,int32/float64,Google Colab Tesla T4
 cpp_serial,caribe,96,1,2,33.311825322,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,andina,154,1,5,10.018861328125,0.001392416000366211,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,1,0.6753697509765625,0.000930655986070633,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,2,0.6748486328125,0.0008405119776725769,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,3,0.6746704711914062,0.0009022400379180909,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,4,0.6742877197265625,0.0008118720352649688,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,5,0.67411328125,0.000796864002943039,int32/float64,Google Colab Tesla T4
-python_cuda,orinoquia,39,1,1,0.714450927734375,0.000816351979970932,int32/float64,Google Colab Tesla T4
-python_cuda,orinoquia,39,1,2,0.7128842163085938,0.0008370560109615327,int32/float64,Google Colab Tesla T4
-python_cuda,orinoquia,39,1,3,0.7139225463867187,0.0009494719803333283,int32/float64,Google Colab Tesla T4
-python_cuda,orinoquia,39,1,4,0.7146605834960937,0.0008631679713726044,int32/float64,Google Colab Tesla T4
-python_cuda,orinoquia,39,1,5,0.7147930908203125,0.0010729280114173889,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,1,0.5941463623046875,0.000967775970697403,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,2,0.620907958984375,0.0010432319939136505,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,3,0.640705322265625,0.0010496320128440856,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,4,0.6013736572265626,0.0009130879938602447,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,5,0.587204345703125,0.0010487679839134216,int32/float64,Google Colab Tesla T4
-python_cuda,caribe,96,1,1,0.732749755859375,0.0009973759949207304,int32/float64,Google Colab Tesla T4
-python_cuda,caribe,96,1,2,0.7301602172851562,0.0009419839680194855,int32/float64,Google Colab Tesla T4
+python_cupy,andina,154,1,5,10.018861328125,0.0013924160003661,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,1,0.6753697509765625,0.0009306559860705001,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,2,0.6748486328125,0.0008405119776725,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,3,0.6746704711914062,0.0009022400379179,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,4,0.6742877197265625,0.0008118720352648,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,5,0.67411328125,0.0007968640029429,int32/float64,Google Colab Tesla T4
+python_cuda,orinoquia,39,1,1,0.714450927734375,0.0008163519799709001,int32/float64,Google Colab Tesla T4
+python_cuda,orinoquia,39,1,2,0.7128842163085938,0.0008370560109615,int32/float64,Google Colab Tesla T4
+python_cuda,orinoquia,39,1,3,0.7139225463867187,0.0009494719803333,int32/float64,Google Colab Tesla T4
+python_cuda,orinoquia,39,1,4,0.7146605834960937,0.0008631679713725,int32/float64,Google Colab Tesla T4
+python_cuda,orinoquia,39,1,5,0.7147930908203125,0.0010729280114173,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,1,0.5941463623046875,0.0009677759706973,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,2,0.620907958984375,0.0010432319939136,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,3,0.640705322265625,0.001049632012844,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,4,0.6013736572265626,0.0009130879938602,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,5,0.587204345703125,0.0010487679839133,int32/float64,Google Colab Tesla T4
+python_cuda,caribe,96,1,1,0.732749755859375,0.0009973759949206,int32/float64,Google Colab Tesla T4
+python_cuda,caribe,96,1,2,0.7301602172851562,0.0009419839680193,int32/float64,Google Colab Tesla T4
 cpp_serial,caribe,96,1,3,31.157070312,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cuda,caribe,96,1,3,0.7323560180664063,0.0010652160048484802,int32/float64,Google Colab Tesla T4
-python_cuda,caribe,96,1,4,0.7311223754882813,0.001050143986940384,int32/float64,Google Colab Tesla T4
-python_cuda,caribe,96,1,5,0.7339686889648438,0.0013214080035686493,int32/float64,Google Colab Tesla T4
-python_cuda,andina,154,1,1,1.7872916259765625,0.0013098559975624085,int32/float64,Google Colab Tesla T4
-python_cuda,andina,154,1,2,1.7929151611328125,0.001238655984401703,int32/float64,Google Colab Tesla T4
-python_cuda,andina,154,1,3,1.791683349609375,0.0012415680289268494,int32/float64,Google Colab Tesla T4
-python_cuda,andina,154,1,4,1.7956365966796874,0.001286239981651306,int32/float64,Google Colab Tesla T4
-python_cuda,andina,154,1,5,1.7894547119140625,0.0013582080006599427,int32/float64,Google Colab Tesla T4
-python_cupy,amazonia,30,1,6,12.1016220703125,0.004967647910118103,int32/float64,Google Colab Tesla T4
+python_cuda,caribe,96,1,3,0.7323560180664063,0.0010652160048484,int32/float64,Google Colab Tesla T4
+python_cuda,caribe,96,1,4,0.7311223754882813,0.0010501439869403,int32/float64,Google Colab Tesla T4
+python_cuda,caribe,96,1,5,0.7339686889648438,0.0013214080035685,int32/float64,Google Colab Tesla T4
+python_cuda,andina,154,1,1,1.7872916259765623,0.0013098559975623,int32/float64,Google Colab Tesla T4
+python_cuda,andina,154,1,2,1.7929151611328125,0.0012386559844016001,int32/float64,Google Colab Tesla T4
+python_cuda,andina,154,1,3,1.791683349609375,0.0012415680289267002,int32/float64,Google Colab Tesla T4
+python_cuda,andina,154,1,4,1.7956365966796874,0.0012862399816512,int32/float64,Google Colab Tesla T4
+python_cuda,andina,154,1,5,1.7894547119140625,0.0013582080006599002,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,6,12.1016220703125,0.0049676479101180004,int32/float64,Google Colab Tesla T4
 cpp_serial,caribe,96,1,4,30.47795587,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,amazonia,30,1,7,10.4066376953125,0.0008480959981679916,int32/float64,Google Colab Tesla T4
-python_cupy,amazonia,30,1,8,11.189001953125,0.0006725759953260422,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,7,10.4066376953125,0.0008480959981679,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,8,11.189001953125,0.000672575995326,int32/float64,Google Colab Tesla T4
 cpp_serial,caribe,96,1,5,31.520340015,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,amazonia,30,1,9,10.9187255859375,0.000840063989162445,int32/float64,Google Colab Tesla T4
-python_cupy,amazonia,30,1,10,10.6175849609375,0.0006999679952859879,int32/float64,Google Colab Tesla T4
-python_cupy,amazonia,30,1,11,10.8538837890625,0.0007488319873809815,int32/float64,Google Colab Tesla T4
-python_cupy,amazonia,30,1,12,10.110693359375,0.0008012799918651582,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,9,10.9187255859375,0.0008400639891624,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,10,10.6175849609375,0.0006999679952858999,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,11,10.8538837890625,0.0007488319873809001,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,12,10.110693359375,0.0008012799918651,int32/float64,Google Colab Tesla T4
 cpp_openmp,caribe,96,4,1,16.106242763,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,amazonia,30,1,13,10.570150390625,0.0009152640104293822,int32/float64,Google Colab Tesla T4
+python_cupy,amazonia,30,1,13,10.570150390625,0.0009152640104293,int32/float64,Google Colab Tesla T4
 cpp_openmp,caribe,96,4,2,18.478719832,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,pacifico,87,1,6,10.7881103515625,0.0023875520527362826,int32/float64,Google Colab Tesla T4
-python_cupy,pacifico,87,1,7,10.600126953125,0.0007577600181102753,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,6,10.7881103515625,0.0023875520527362,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,7,10.600126953125,0.0007577600181102001,int32/float64,Google Colab Tesla T4
 cpp_openmp,caribe,96,4,3,15.344588417,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,pacifico,87,1,8,10.6553251953125,0.0007948800027370454,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,8,10.6553251953125,0.0007948800027369,int32/float64,Google Colab Tesla T4
 cpp_openmp,caribe,96,4,4,15.226650495,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,pacifico,87,1,9,10.9703525390625,0.0007446399927139283,int32/float64,Google Colab Tesla T4
-python_cupy,pacifico,87,1,10,10.839767578125,0.0009199999868869782,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,9,10.9703525390625,0.0007446399927139001,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,10,10.839767578125,0.0009199999868869,int32/float64,Google Colab Tesla T4
 cpp_openmp,caribe,96,4,5,15.164572496,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cupy,pacifico,87,1,11,9.8986259765625,0.0012308799922466278,int32/float64,Google Colab Tesla T4
-python_cupy,pacifico,87,1,12,10.635330078125,0.0008515200316905976,int32/float64,Google Colab Tesla T4
-python_cupy,pacifico,87,1,13,10.6142431640625,0.0007530879974365235,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,6,0.8073814086914063,0.0022373120188713073,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,7,0.6742863159179687,0.0009660480022430421,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,11,9.8986259765625,0.0012308799922465,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,12,10.635330078125,0.0008515200316905,int32/float64,Google Colab Tesla T4
+python_cupy,pacifico,87,1,13,10.6142431640625,0.0007530879974364,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,6,0.8073814086914063,0.0022373120188713,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,7,0.6742863159179687,0.0009660480022428999,int32/float64,Google Colab Tesla T4
 cpp_mpi,caribe,96,4,1,15.681594651,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_cuda,amazonia,30,1,8,0.6745010986328125,0.000918527990579605,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,9,0.6751621704101562,0.0010508799850940706,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,10,0.6756231079101562,0.0009053760170936584,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,11,0.6795675048828125,0.0010999359786510467,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,12,0.6756615600585938,0.0010179840326309205,int32/float64,Google Colab Tesla T4
-python_cuda,amazonia,30,1,13,0.6768707885742188,0.0011621440052986146,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,6,0.6309778442382813,0.002375935971736908,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,7,0.6121697387695313,0.0010486080050468444,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,8,0.614894287109375,0.0009899199903011322,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,9,0.60433642578125,0.0009973439872264863,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,10,0.5967943725585938,0.0009603840112686157,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,11,0.6317376098632812,0.0009470080137252807,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,12,0.6240444946289062,0.0009416320025920868,int32/float64,Google Colab Tesla T4
-python_cuda,pacifico,87,1,13,0.5258291015625,0.0008923839926719666,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,8,0.6745010986328125,0.0009185279905795,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,9,0.6751621704101562,0.001050879985094,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,10,0.6756231079101562,0.0009053760170936,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,11,0.6795675048828125,0.001099935978651,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,12,0.6756615600585938,0.0010179840326308,int32/float64,Google Colab Tesla T4
+python_cuda,amazonia,30,1,13,0.6768707885742188,0.0011621440052984999,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,6,0.6309778442382813,0.0023759359717368,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,7,0.6121697387695313,0.0010486080050468001,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,8,0.614894287109375,0.0009899199903011,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,9,0.60433642578125,0.0009973439872264,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,10,0.5967943725585938,0.0009603840112685,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,11,0.6317376098632812,0.0009470080137252,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,12,0.6240444946289062,0.0009416320025919999,int32/float64,Google Colab Tesla T4
+python_cuda,pacifico,87,1,13,0.5258291015625,0.0008923839926719,int32/float64,Google Colab Tesla T4
 cpp_mpi,caribe,96,4,2,16.257448101,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_mpi,caribe,96,4,3,15.277178926,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_mpi,caribe,96,4,4,18.128051199,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
@@ -207,10 +207,10 @@ cpp_mpi,andina,154,4,3,27.985481075,,int32/float64,11th Gen Intel(R) Core(TM) i5
 cpp_mpi,andina,154,4,4,27.42215392,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 cpp_mpi,andina,154,4,5,27.595093303,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,amazonia,30,1,1,1.7084499850006978,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_numpy,amazonia,30,1,2,1.7295103020005627,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_numpy,amazonia,30,1,2,1.7295103020005629,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,amazonia,30,1,3,1.714372739999817,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,amazonia,30,1,4,1.9861562469995988,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_numpy,amazonia,30,1,5,1.7642938509998203,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_numpy,amazonia,30,1,5,1.7642938509998205,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,amazonia,30,1,6,1.7088891500006866,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,amazonia,30,1,7,1.918167772999368,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,amazonia,30,1,8,1.9921379329989577,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
@@ -222,7 +222,7 @@ python_numpy,orinoquia,39,1,5,2.4446045540007617,,int32/float64,11th Gen Intel(R
 python_numpy,orinoquia,39,1,6,2.457840317998489,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,orinoquia,39,1,7,2.427893190000759,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,orinoquia,39,1,8,2.4696298239996395,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_numpy,pacifico,87,1,1,7.2823273689991765,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_numpy,pacifico,87,1,1,7.282327368999176,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,pacifico,87,1,2,7.25511878999896,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,pacifico,87,1,3,7.699318394001239,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,pacifico,87,1,4,7.381392720000804,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
@@ -230,21 +230,21 @@ python_numpy,pacifico,87,1,5,7.350298416000442,,int32/float64,11th Gen Intel(R) 
 python_numpy,pacifico,87,1,6,7.03149798999948,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,pacifico,87,1,7,7.208291656001165,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,pacifico,87,1,8,7.52406474000054,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_numpy,caribe,96,1,1,11.144665251000333,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_numpy,caribe,96,1,1,11.144665251000331,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,caribe,96,1,2,10.747988377001093,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,caribe,96,1,3,10.809741367000242,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_numpy,caribe,96,1,4,10.686320087999775,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_numpy,caribe,96,1,4,10.686320087999777,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,caribe,96,1,5,10.857776951999767,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,caribe,96,1,6,10.703247211000416,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,caribe,96,1,7,12.899752824001553,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,caribe,96,1,8,12.34187692299929,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_numpy,andina,154,1,1,21.431134821999876,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_numpy,andina,154,1,1,21.43113482199988,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,andina,154,1,2,22.065042368998547,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,andina,154,1,3,22.095435283999905,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_numpy,andina,154,1,4,25.572542167001302,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_numpy,andina,154,1,4,25.572542167001306,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,andina,154,1,5,21.76785742500033,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,andina,154,1,6,20.381850371999462,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_numpy,andina,154,1,7,20.584350215000086,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_numpy,andina,154,1,7,20.58435021500009,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_numpy,andina,154,1,8,19.955004888000985,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_pure,amazonia,30,1,1,17.533389457999874,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_pure,amazonia,30,1,2,17.654924492000646,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
@@ -255,8 +255,8 @@ python_pure,orinoquia,39,1,3,31.52102507300151,,int32/float64,11th Gen Intel(R) 
 python_multiprocessing,amazonia,30,1,1,15.91762757000106,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,amazonia,30,1,2,16.079718300999957,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,amazonia,30,1,3,13.789879980000478,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing,amazonia,30,1,4,14.062398072999713,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing,amazonia,30,1,5,14.363809611000761,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing,amazonia,30,1,4,14.062398072999711,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing,amazonia,30,1,5,14.36380961100076,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,amazonia,30,1,6,13.972512614000152,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,amazonia,30,2,1,8.707638996000242,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,amazonia,30,2,2,8.478326283999195,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
@@ -282,27 +282,27 @@ python_multiprocessing,pacifico,87,1,6,59.33864551700026,,int32/float64,11th Gen
 python_multiprocessing,pacifico,87,2,1,34.219650891998754,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,2,2,37.05249349800033,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,2,3,34.922849806998784,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing,pacifico,87,2,4,37.850107186999594,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing,pacifico,87,2,4,37.8501071869996,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,2,5,35.89510379799867,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,4,1,24.24121331800052,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,4,2,23.249601955001708,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,4,3,25.88491888400131,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,4,4,22.51757095099856,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing,pacifico,87,4,5,23.259941457999957,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing,pacifico,87,4,5,23.25994145799996,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,8,1,16.279686666999623,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,8,2,16.698576918999606,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,8,3,19.500845828999445,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,8,4,17.134748058000696,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing,pacifico,87,8,5,18.39220640200074,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,amazonia,30,1,1,15.845257896000476,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing_franjas,amazonia,30,1,2,14.577961736000361,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing_franjas,amazonia,30,1,2,14.57796173600036,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,amazonia,30,1,3,14.571382230999006,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,amazonia,30,1,4,14.76508327800002,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,amazonia,30,1,5,14.443625803000032,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,amazonia,30,2,1,8.58324046800044,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing_franjas,amazonia,30,2,2,23.537208179999652,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing_franjas,amazonia,30,2,3,10.482546184000967,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing_franjas,amazonia,30,2,4,10.066747606999343,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing_franjas,amazonia,30,2,2,23.53720817999965,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing_franjas,amazonia,30,2,3,10.482546184000968,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing_franjas,amazonia,30,2,4,10.066747606999344,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,amazonia,30,2,5,9.745308568999462,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,amazonia,30,4,1,7.880021712000598,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,amazonia,30,4,2,9.49264000400035,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
@@ -314,21 +314,21 @@ python_multiprocessing_franjas,amazonia,30,8,2,7.993826874000661,,int32/float64,
 python_multiprocessing_franjas,amazonia,30,8,3,8.908186603999638,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,amazonia,30,8,4,8.789201423000122,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,amazonia,30,8,5,8.343454420000853,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing_franjas,pacifico,87,1,1,113.59982502300045,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing_franjas,pacifico,87,1,1,113.59982502300043,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,1,2,116.2177419540003,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,1,3,124.54797840100036,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,1,4,119.26153120799972,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing_franjas,pacifico,87,1,5,119.82357334799963,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing_franjas,pacifico,87,1,5,119.82357334799964,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,2,1,76.15318014900004,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,2,2,74.16695383799924,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,2,3,74.60564541700114,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,2,4,96.43588459700004,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,2,5,164.3379346340007,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,4,1,121.37649374800094,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing_franjas,pacifico,87,4,2,102.15286839199871,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing_franjas,pacifico,87,4,2,102.15286839199872,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,4,3,89.80190116000085,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,4,4,82.8492411999996,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-python_multiprocessing_franjas,pacifico,87,4,5,92.53580748100103,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+python_multiprocessing_franjas,pacifico,87,4,5,92.53580748100104,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,8,1,68.16278927500025,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,8,2,68.02374736899947,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 python_multiprocessing_franjas,pacifico,87,8,3,56.99016297799972,,int32/float64,11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz

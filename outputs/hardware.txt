@@ -14,7 +14,7 @@ nucleos_rendimiento: 4
 nucleos_eficiencia: 0
 memoria: 3.7Gi
 g++: g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0
-mpi: 
+mpi: Open MPI (openmpi-bin 5.0.10-1)
 python: Python 3.14.4
 numpy: 2.5.5 / pandas: 3.1.1
 banderas C++: -O3 -march=native -std=c++17 -Wall -Wextra -Wpedantic (-fopenmp en OpenMP)

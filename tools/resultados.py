@@ -170,8 +170,19 @@ def cargar() -> dict:
                 s = t("serial", r) / t(p, r)
                 if s > best[1]:
                     best = (p, s, r)
+    def cfg(p, r):
+        if p in ("cupy", "cuda"):
+            return f"{NOMBRE[p]} en GPU, {REGION[r]}"
+        return f"{NOMBRE[p]} con p = {int(piv_w.loc[r, p])} en {REGION[r]}"
     R["smax_serial"] = n(best[1]) if best[0] else "—"
-    R["smax_serial_cfg"] = (f"{NOMBRE[best[0]]} con p = {int(piv_w.loc[best[2], best[0]])} en {REGION[best[2]]}" if best[0] else "—")
+    R["smax_serial_cfg"] = cfg(best[0], best[2]) if best[0] else "—"
+    bc = (None, 0, None)
+    for r in orden:
+        for p in ("openmp", "mpi"):
+            if p in cols and not np.isnan(t(p, r)) and not np.isnan(t("serial", r)) and t("serial", r) / t(p, r) > bc[1]:
+                bc = (p, t("serial", r) / t(p, r), r)
+    R["smax_cpu"] = n(bc[1]) if bc[0] else "—"
+    R["smax_cpu_cfg"] = cfg(bc[0], bc[2]) if bc[0] else "—"
     bestn = (None, 0, None)
     for r in orden:
         for p in cols:
@@ -180,7 +191,7 @@ def cargar() -> dict:
                 if s > bestn[1]:
                     bestn = (p, s, r)
     R["smax_numpy"] = n(bestn[1]) if bestn[0] else "—"
-    R["smax_numpy_cfg"] = (f"{NOMBRE[bestn[0]]} con p = {int(piv_w.loc[bestn[2], bestn[0]])} en {REGION[bestn[2]]}" if bestn[0] else "—")
+    R["smax_numpy_cfg"] = cfg(bestn[0], bestn[2]) if bestn[0] else "—"
     R["t_serial_p"], R["t_numpy_p"] = n(t("serial", rp)), n(t("numpy", rp))
     ratio = t("serial", rp) / t("numpy", rp) if not np.isnan(t("numpy", rp)) else np.nan
     R["ratio_serial_numpy"] = n(ratio, 1)
@@ -283,6 +294,21 @@ def cargar() -> dict:
         R["gpu_transferencia"] = ""
         R["gpu_texto"] = PG
 
+    # ---------------- lectura de la escalabilidad (depende del equipo) ----------------
+    q_mp = ep[ep.paradigma == "multiprocessing"]
+    if len(q_mp):
+        e_rep = float(q_mp.loc[q_mp.workers.idxmax()].eficiencia)
+        R["nota_escalado"] = (
+            f"Un dato ayuda a interpretar estas eficiencias: el ensamble de réplicas de `multiprocessing`, que no tiene "
+            f"ninguna comunicación ni sincronización entre procesos, también se queda en una eficiencia de {n(e_rep)} con "
+            f"p = {int(q_mp.workers.max())}. Si el límite fuera el código (partes seriales, comunicación), las réplicas "
+            "escalarían casi perfectamente. Que no lo hagan indica que el techo lo pone el propio equipo: en un portátil, "
+            "la frecuencia de reloj baja cuando trabajan todos los núcleos a la vez (el modo turbo solo se sostiene con "
+            "uno o dos núcleos activos), el procesador se calienta y los núcleos comparten caché y memoria. Esta es la "
+            "hipótesis más compatible con las mediciones; confirmarla requeriría registrar la frecuencia durante la "
+            "ejecución.")
+    else:
+        R["nota_escalado"] = ""
     # ---------------- escalabilidad débil ----------------
     if deb is not None and len(deb):
         R["tabla_debil"] = tabla_md(pd.DataFrame({
@@ -386,6 +412,24 @@ def cargar() -> dict:
                             or "en ninguna región evaluada")
     else:
         R["var_caso"] = R["var_cv"] = R["var_cv_estable"] = R["extinciones"] = PEND
+    # decisión de implementación con más impacto (según los datos)
+    cand = []
+    if "cupy" in piv_t.columns and "cuda" in piv_t.columns:
+        rr = [r for r in orden if not np.isnan(t("cupy", r)) and not np.isnan(t("cuda", r))]
+        if rr:
+            fac = [t("cupy", r) / t("cuda", r) for r in rr]
+            cand.append((max(fac), f"fusionar todo el sub-paso en un kernel CUDA propio en lugar de encadenar operaciones de CuPy: "
+                                   f"el tiempo por simulación bajó entre {n(min(fac), 1)} y {n(max(fac), 1)} veces según la región"))
+    lgam = None
+    try:
+        lgam = float(str(R.get("lgamma_despues", "nan")).replace(",", ".")) / float(str(R.get("lgamma_antes", "nan")).replace(",", "."))
+    except ValueError:
+        pass
+    if lgam and not np.isnan(lgam):
+        cand.append((lgam, f"usar `lgamma_r` en lugar de `lgamma` en OpenMP: speedup de {R.get('lgamma_antes')} a {R.get('lgamma_despues')}"))
+    R["decision_impacto"] = (max(cand)[1] if cand else "[PENDIENTE: medir]")
+    R["lgamma_lectura"] = ("En este equipo el efecto fue pequeño" if lgam and lgam < 1.1 else "El efecto fue claro") if lgam else ""
+
     return R
 
 

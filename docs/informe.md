@@ -18,9 +18,9 @@ MPI, además de un kernel CUDA escrito a mano. Las versiones de GPU se midieron 
 Colab (Tesla T4). La corrección se validó en dos niveles: las tres versiones en C++
 producen resultados idénticos bit a bit para cualquier número de hilos o procesos gracias a
 un flujo aleatorio por fila del tablero, y la equivalencia entre lenguajes se evaluó
-estadísticamente con réplicas Monte Carlo. En un equipo de 4 núcleos se obtuvo
-un speedup máximo de 43,04 respecto a C++ secuencial (CUDA con p = 1 en Caribe) y de
-14,79 respecto a NumPy (CUDA con p = 1 en Caribe). La fracción paralela ajustada con la
+estadísticamente con réplicas Monte Carlo. En CPU, con 4 núcleos, el speedup
+máximo frente a C++ secuencial fue 2,35 (OpenMP con p = 4 en Andina); en la GPU llegó a
+43,04 (CUDA en GPU, Caribe), y 14,79 frente a NumPy. La fracción paralela ajustada con la
 ley de Amdahl fue 0,644 para OpenMP, 0,515 para MPI y 0,816 para el ensamble con
 `multiprocessing`. En la GPU, la versión más rápida en Andina (el tablero más grande medido) fue CUDA (1,79 s por simulación): 35,28 veces más rápida que C++ secuencial, y 12,06 veces más rápida que la mejor versión de CPU para una simulación (NumPy). Tres hallazgos no previstos resultaron de las
 mediciones: una contención entre hilos causada por el estado global de la función `lgamma`
@@ -382,7 +382,7 @@ deriva `outputs/tiempos.csv` con las columnas pedidas en la guía del curso.
 para las réplicas de referencia de Python puro.
 
 **Hardware y software.** Todas las mediciones de CPU de este informe se hicieron el
-2026-11-17 en un único equipo: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, 4 núcleos físicos, 3.7Gi de RAM; Ubuntu 26.04.1 LTS / kernel 6.18.33.2-microsoft-standard-WSL2; g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0; ; Python 3.14.4; 2.5.5 / pandas: 3.1.1. Banderas de compilación:
+2026-11-17 en un único equipo: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, 4 núcleos físicos, 3.7Gi de RAM; Ubuntu 26.04.1 LTS / kernel 6.18.33.2-microsoft-standard-WSL2; g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0; mpirun (Open MPI) — versión no registrada por la medición; Python 3.14.4; 2.5.5 / pandas: 3.1.1. Banderas de compilación:
 `-O3 -march=native` (`-mcpu=native` en ARM) `-std=c++17`, más `-fopenmp` en OpenMP.
 Todos los núcleos del equipo son equivalentes (procesador homogéneo). Las versiones de GPU se midieron en Google Colab: Tesla T4, 15360 MiB, 580.82.07; CuPy 14.0.1; CUDA runtime 13000. No se usaron
 más hilos o procesos que núcleos físicos; cuando una configuración los excede, se marca
@@ -511,8 +511,9 @@ teórica en un factor relativo de 3,8 × 10⁻⁴ (13 errores estándar), mientr
 *np* = 5 y *np* = 360 no se detecta sesgo. El sesgo es del mismo orden que la discrepancia
 observada y es epidemiológicamente irrelevante, pero muestra que el criterio de validación
 tiene potencia para detectar diferencias de centésimas de punto porcentual, y que "usar la
-biblioteca estándar" no garantiza exactitud. [REFERENCIA POR VERIFICAR: algoritmo de
-rechazo que implementa libstdc++ para la binomial y si el sesgo está reportado.]
+biblioteca estándar" no garantiza exactitud. Según los comentarios de su código fuente
+(`bits/random.tcc`), libstdc++ implementa la binomial con los métodos de Devroye (1986); no
+se verificó si este sesgo está reportado como error.
 
 ---
 
@@ -545,9 +546,11 @@ factor de 2,5), aunque ambos usan muestreo binomial exacto. Casi todo el
 tiempo se va en ese muestreo, así que la diferencia la pone la implementación de la
 binomial: NumPy procesa el tablero completo en una llamada con su propio algoritmo en C,
 mientras que la versión C++ crea un `std::binomial_distribution` por muestra (con su
-preparación de parámetros) y vuelve a sembrar un `mt19937_64` por fila y sub-paso. Esta es
-una hipótesis compatible con las mediciones; confirmarla requiere un perfilador (pregunta 2
-de la sección 8).
+preparación de parámetros) y vuelve a sembrar un `mt19937_64` por fila y sub-paso. El
+perfilador lo confirma (pregunta 2 de la sección 8): en C++ secuencial, el 35 % del tiempo
+se va en generar números uniformes, el 28 % en el muestreo binomial y el 20 % solo en
+**preparar los parámetros** de cada `std::binomial_distribution`, un costo que NumPy no paga
+por muestra.
 
 ![**Figura 4 (P1).** Tiempo por simulación de cada paradigma en cada región (escala logarítmica).](../outputs/figures/P1_paradigmas_por_region.png)
 
@@ -567,8 +570,8 @@ dibujan huecos.
 
 ![**Figura 6 (G4).** Speedup por simulación respecto a NumPy (izquierda) y respecto a C++ secuencial (derecha).](../outputs/figures/G4_speedup_vs_tamano.png)
 
-El speedup máximo respecto a C++ secuencial fue 43,04 (CUDA con p = 1 en Caribe), y
-respecto a NumPy, 14,79 (CUDA con p = 1 en Caribe). La GPU supera a la mejor versión de CPU para una simulación a partir de Amazonía (L = 30), es decir, en todos los tamaños medidos.
+El speedup máximo respecto a C++ secuencial fue 2,35 en CPU (OpenMP con p = 4 en Andina) y
+43,04 en GPU (CUDA en GPU, Caribe); respecto a NumPy, 14,79 (CUDA en GPU, Caribe). La GPU supera a la mejor versión de CPU para una simulación a partir de Amazonía (L = 30), es decir, en todos los tamaños medidos.
 
 ### 7.4 Escalabilidad fuerte (G5)
 
@@ -641,14 +644,15 @@ máximo de cada implementación fue: Python puro: 0,08 millones/s; NumPy: 1,79 m
 
 ### 7.8 Decisiones de implementación medidas
 
-**`lgamma` reentrante.** En las primeras mediciones, OpenMP escalaba peor que MPI en el
-mismo equipo, algo inesperado para un bucle sin sincronización. La causa:
-`std::binomial_distribution` llama a la función `lgamma` de la biblioteca de C al preparar
-cada muestreo, y esa función escribe la variable global `signgam`. Con varios hilos, todos
-escriben la misma línea de caché, que rebota entre núcleos. Los procesos de MPI no
-comparten memoria y no lo sufren. Al sustituir `lgamma` por la variante reentrante
-`lgamma_r`, el speedup de OpenMP mejoró sin cambio alguno en los resultados numéricos
-(Tabla 8).
+**`lgamma` reentrante.** `std::binomial_distribution` llama a la función `lgamma` de la
+biblioteca de C al preparar cada muestreo, y esa función escribe la variable global
+`signgam`. Con varios hilos, todos escriben la misma línea de caché, que rebota entre
+núcleos; los procesos de MPI no comparten memoria y no lo sufren. Se sustituyó por la
+variante reentrante `lgamma_r`, sin cambio alguno en los resultados numéricos. En las
+pruebas de desarrollo, en otro equipo Linux de 4 núcleos, este estado compartido limitaba
+claramente a OpenMP frente a MPI. En el portátil de las mediciones finales:
+En este equipo el efecto fue pequeño (Tabla 8). El impacto de la contención depende del procesador (de cómo
+comparte la caché entre núcleos), por eso conviene medirlo en cada equipo.
 
 **Tabla 8.** Speedup de OpenMP respecto a C++ secuencial, antes y después del cambio.
 
@@ -675,8 +679,9 @@ planificación (Tabla 9): la medición confirmó la elección: `static` fue el m
 
 ### 8.1 Respuestas a las preguntas guía
 
-**1. Speedup máximo y referencia.** 43,04 respecto a C++ secuencial
-(CUDA con p = 1 en Caribe) y 14,79 respecto a NumPy (CUDA con p = 1 en Caribe). La conclusión
+**1. Speedup máximo y referencia.** Frente a C++ secuencial: 2,35 en CPU
+(OpenMP con p = 4 en Andina) y 43,04 en GPU (CUDA en GPU, Caribe). Frente a NumPy:
+14,79 (CUDA en GPU, Caribe). La conclusión
 cambia con la referencia. Frente a Python puro cualquier versión parece extraordinaria,
 pero esa ganancia mezcla el cambio de lenguaje con el paralelismo. Frente a NumPy, las
 versiones de C++ con muestreo exacto resultan más lentas en un solo núcleo, y
@@ -687,12 +692,16 @@ secuencial; la comparación contra NumPy mide además la diferencia de algoritmo
 **2. Fracción paralelizable.** El ajuste de Amdahl da f = 0,644 (OpenMP), 0,515
 (MPI) y 0,816 (`multiprocessing`). Dentro del bucle medido, la parte estrictamente
 serial es pequeña: el cálculo de las constantes del mes, la copia de dos filas fantasma por
-tablero y el intercambio de punteros del doble buffer. [PENDIENTE: medir la fracción
-paralela con un perfilador (`perf` o `gprof`) sobre `cpp/secuencial` y compararla.] La
+tablero y el intercambio de punteros del doble buffer. El perfilador `gprof` sobre
+`cpp/secuencial` (Pacífico) lo confirma: más del 99 % del tiempo está dentro del cálculo por
+fila (`step_row` y el muestreo que llama), que es exactamente lo que se paraleliza; la parte
+serial medida es inferior al 1 %. Es decir, el perfilador predice f ≈ 0,99, muy por encima
+de la f ajustada. La diferencia no es código serial. La
 fracción de Karp-Flatt indica el origen de la pérdida: en OpenMP crece de 0,308 (p = 2) a 0,364 (p = 4); en MPI
 disminuye de 0,549 (p = 2) a 0,472 (p = 4); en `multiprocessing` disminuye de 0,196 (p = 2) a 0,183 (p = 4). Cuando *e* crece con *p*, la pérdida no es
 código serial sino sobrecosto de paralelización (creación de regiones paralelas en cada
 sub-paso, desbalance de carga entre filas y competencia por los núcleos del equipo).
+Un dato ayuda a interpretar estas eficiencias: el ensamble de réplicas de `multiprocessing`, que no tiene ninguna comunicación ni sincronización entre procesos, también se queda en una eficiencia de 0,65 con p = 4. Si el límite fuera el código (partes seriales, comunicación), las réplicas escalarían casi perfectamente. Que no lo hagan indica que el techo lo pone el propio equipo: en un portátil, la frecuencia de reloj baja cuando trabajan todos los núcleos a la vez (el modo turbo solo se sostiene con uno o dos núcleos activos), el procesador se calienta y los núcleos comparten caché y memoria. Esta es la hipótesis más compatible con las mediciones; confirmarla requeriría registrar la frecuencia durante la ejecución.
 
 **3. ¿Cómputo o memoria?** El problema está limitado por el cómputo. Cada actualización de
 celda lee del orden de 5 enteros propios más 24 de las vecinas (unos 120 bytes, en su
@@ -700,9 +709,9 @@ mayoría ya en caché porque las filas son contiguas) y ejecuta 8 muestreos bino
 uno con varias operaciones de punto flotante, logaritmos y un bucle de rechazo. La
 intensidad aritmética es alta —cientos de operaciones por cada pocas decenas de bytes— y
 los tableros completos caben en caché (el mayor, 10 tableros de 154 × 154 enteros, ocupa
-menos de 1 MB por buffer). Por eso OpenMP no se satura por ancho de banda de memoria, y por
-eso mismo el generador aleatorio domina el tiempo: optimizarlo rinde más que optimizar el
-acceso a la malla. En la GPU el panorama cambia: CuPy lanza unas cuarenta operaciones por
+menos de 1 MB por buffer). Por eso el generador aleatorio domina el tiempo (pregunta 2:
+más del 80 % del tiempo de C++ se va en números aleatorios y muestreo) y optimizarlo rinde
+más que optimizar el acceso a la malla. En la GPU el panorama cambia: CuPy lanza unas cuarenta operaciones por
 sub-paso y cada una lee y escribe el tablero completo en memoria, lo que la hace limitada
 por memoria y por el costo de lanzar kernels; el kernel propio fusiona todo en una pasada.
 A cambio, el muestreo por rechazo hace que hilos vecinos ejecuten un número distinto de
@@ -731,14 +740,15 @@ como la de Colab ejecutan la doble precisión mucho más despacio que la simple,
 la ventaja medida de la GPU es una cota inferior. No se midió la variante en `float32`
 (gráfica G8, recomendada pero no obligatoria). La
 diferencia de mayor impacto entre versiones no es la precisión sino el **algoritmo de
-muestreo**: exacto en Python puro y C++, aproximado en NumPy y CuPy (sección 6.2).
+muestreo**: la aproximación original de NumPy y CuPy sesgaba el resultado y se sustituyó por
+la binomial exacta (sección 6.2).
 
-**7. Decisión con más impacto.** La sustitución de `lgamma` por su versión reentrante: el
-speedup de OpenMP con 4 hilos en Pacífico pasó de
-1,86 a 1,91 (Tabla 8). En comparación, el tipo de scheduling
-movió el tiempo un 2 % (Tabla 9). La lección es que el cuello de botella de un
-programa paralelo puede estar en estado compartido oculto dentro de una biblioteca, no en
-el código propio.
+**7. Decisión con más impacto.** Según las mediciones, fusionar todo el sub-paso en un kernel CUDA propio en lugar de encadenar operaciones de CuPy: el tiempo por simulación bajó entre 5,8 y 17,3 veces según la región. En comparación,
+`lgamma_r` llevó el speedup de OpenMP con 4 hilos de 1,86 a
+1,91 (Tabla 8) y el tipo de scheduling movió el tiempo un 2 %
+(Tabla 9). La lección es doble: en GPU, el número de veces que se recorre la memoria importa
+más que la cantidad de operaciones; y en CPU, el cuello de botella puede estar en estado
+compartido oculto dentro de una biblioteca, no en el código propio.
 
 **8. Costo de desarrollo y recomendación.**
 
@@ -747,9 +757,9 @@ el código propio.
 | Versión | Archivos | Líneas de código | Horas |
 |---|---|---:|---:|
 | Python puro | `adapters/utils_pure.py` | 693 | [PENDIENTE] |
-| NumPy / CuPy | `adapters/utils_npcp.py` | 352 | [PENDIENTE] |
-| multiprocessing | `adapters/utils_parallel.py` | 140 (+ 90 en `main.py`) | [PENDIENTE] |
-| C++ común + secuencial | `common.hpp`, `secuencial.cpp` | 570 + 67 | [PENDIENTE] |
+| NumPy / CuPy | `adapters/utils_npcp.py` | 396 | [PENDIENTE] |
+| multiprocessing (réplicas y franjas) | `adapters/utils_parallel.py`, `adapters/utils_mp.py` | 138 + 469 | [PENDIENTE] |
+| C++ común + secuencial | `common.hpp`, `secuencial.cpp` | 578 + 67 | [PENDIENTE] |
 | OpenMP (adicional) | `openmp.cpp` | 99 | [PENDIENTE] |
 | MPI (adicional) | `mpi.cpp` | 155 | [PENDIENTE] |
 | Kernel CUDA | `adapters/kernel_automata.cu`, `adapters/utils_cuda.py` | 172 + 151 | [PENDIENTE] |
@@ -818,13 +828,14 @@ núcleo. La GPU conviene a partir del tamaño de cruce indicado en la sección 7
 1. Un mismo autómata celular estocástico se implementó en 9 paradigmas
    (Python puro, NumPy, multiprocessing, multiprocessing (franjas), CuPy, C++ secuencial, OpenMP, MPI, CUDA; pendientes: ninguno). Las versiones de C++ dan resultados idénticos
    entre sí y sus curvas medias son estadísticamente compatibles con la referencia.
-2. El speedup máximo fue 43,04 respecto a C++ secuencial (CUDA con p = 1 en Caribe) y
-   14,79 respecto a NumPy (CUDA con p = 1 en Caribe), en un equipo de 4
-   núcleos. La referencia elegida cambia la lectura: la diferencia entre NumPy y C++ es,
-   sobre todo, una diferencia de algoritmo de muestreo.
-3. El problema está limitado por el cómputo del muestreo aleatorio, no por la memoria; por
-   eso escala bien en memoria compartida una vez eliminado el estado global oculto
-   (`lgamma`).
+2. Frente a C++ secuencial, el speedup máximo fue 2,35 en CPU (OpenMP con p = 4 en Andina, con
+   4 núcleos) y 43,04 en GPU (CUDA en GPU, Caribe); frente a NumPy, 14,79. La referencia elegida cambia la lectura: NumPy es más rápido que C++ secuencial
+   por la implementación de su binomial, no por el lenguaje.
+3. El problema está limitado por el cómputo del muestreo aleatorio (más del 99 % del tiempo
+   es paralelizable según el perfilador). En el portátil de 4 núcleos la eficiencia queda
+   lejos de 1 incluso sin comunicación (réplicas), lo que apunta al propio equipo
+   (frecuencia turbo y temperatura) y no al código; en la GPU, fusionar todo el sub-paso en un
+   kernel propio fue la decisión más rentable.
 4. Diseñar los flujos aleatorios por fila, y no por hilo, convirtió la verificación del
    paralelismo en una comparación exacta y dejó la estadística solo para comparar
    lenguajes.
@@ -848,6 +859,8 @@ todas las versiones —incluida la vectorizada—, y tableros de resolución mun
 Amdahl, G. M. (1967). Validity of the single processor approach to achieving large scale computing capabilities. *AFIPS Spring Joint Computer Conference Proceedings*, 30, 483–485.
 
 Dagum, L., & Menon, R. (1998). OpenMP: An industry-standard API for shared-memory programming. *IEEE Computational Science and Engineering*, 5(1), 46–55.
+
+Devroye, L. (1986). *Non-Uniform Random Variate Generation*. Springer-Verlag.
 
 Gustafson, J. L. (1988). Reevaluating Amdahl's law. *Communications of the ACM*, 31(5), 532–533.
 
@@ -887,7 +900,7 @@ World Health Organization. (2023). *World malaria report 2023*. WHO.
 
 [REFERENCIA POR VERIFICAR] Fuente oficial de los datos de casos e IPA por región (Instituto Nacional de Salud – SIVIGILA / Ministerio de Salud y Protección Social) y de las variables climáticas del dataset `GAM_regional_enriquecido`.
 
-[REFERENCIA POR VERIFICAR] Guía del proyecto final del curso (documento del docente, 2026-2), para citar el protocolo de medición.
+Universidad de Medellín. (2026). *Proyecto Final HPC 2026-2: guía del proyecto* [Documento del curso Computación de Alto Desempeño].
 
 > **Nota sobre las referencias:** todas las entradas sin marca corresponden a publicaciones
 > reales; antes de entregar, confirmar páginas y volúmenes contra la fuente (DOI o

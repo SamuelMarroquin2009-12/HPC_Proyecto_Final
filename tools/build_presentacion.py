@@ -133,7 +133,7 @@ SLIDES = [
          f=f"G5_escalabilidad_fuerte_{v('region_p')}.png"),
 
     dict(tipo="hallazgo", k="Hallazgo", t="El freno oculto de OpenMP",
-         p=["Síntoma: OpenMP escalaba peor que MPI en la misma máquina",
+         p=["Síntoma (pruebas de desarrollo): OpenMP escalaba peor que MPI en la misma máquina",
             "Causa: una función matemática de la biblioteca (lgamma) escribe una variable global que comparten todos los hilos",
             "Los procesos de MPI no comparten memoria: no lo sufren",
             "Solución: la versión sin estado compartido (lgamma_r). Mismos resultados"],
@@ -167,13 +167,14 @@ SLIDES = [
 
     dict(tipo="figura", k="Comparación", t="Tiempo frente a tamaño",
          p=[f"En {v('region_grande')}: {v('ranking_grande')}"],
-         kpis=[("×" + v("smax_serial"), "máximo vs C++ secuencial · " + v("smax_serial_cfg")),
-               ("×" + v("smax_numpy"), "máximo vs NumPy · " + v("smax_numpy_cfg"))],
+         kpis=[("×" + v("smax_cpu"), "máximo en CPU vs C++ secuencial · " + v("smax_cpu_cfg")),
+               ("×" + v("smax_serial"), "máximo en GPU vs C++ secuencial · " + v("smax_serial_cfg"))],
          n="Pendientes log-log medidas: " + v("pendientes") + ". Los puntos huecos de Python puro son extrapolados.",
          f="G3_tiempo_vs_tamano.png"),
 
     dict(tipo="figura", k="Comparación", t="¿Hasta dónde escala?",
          p=["Con más workers que núcleos el tiempo no mejora",
+            f"Ni las réplicas sin comunicación pasan de eficiencia {v('E_mp')}: el límite lo pone el portátil (turbo y temperatura), no el código",
             "MPI: la comunicación pesa más en tableros pequeños y con más procesos"],
          kpis=[(v("f_omp"), "fracción paralela OpenMP"), (v("f_mpi"), "fracción paralela MPI"), (v("f_mp"), "fracción paralela multiprocessing")],
          n="Sobresuscripción medida: " + v("sobresuscripcion") + ". " + v("nota_nucleos").replace("**", ""),
@@ -189,7 +190,7 @@ SLIDES = [
 
     dict(tipo="tarjetas", k="Cierre", t="Conclusiones",
          cards=[("1", f"El mismo modelo corre en {v('n_paradigmas')} paradigmas con resultados verificados."),
-                ("2", f"Speedup máximo ×{v('smax_serial')} vs C++ secuencial y ×{v('smax_numpy')} vs NumPy, con {v('nucleos')} núcleos."),
+                ("2", f"Speedup máximo vs C++ secuencial: ×{v('smax_cpu')} en CPU ({v('nucleos')} núcleos) y ×{v('smax_serial')} en GPU."),
                 ("3", "La referencia importa: NumPy vs C++ mide sobre todo el algoritmo de muestreo."),
                 ("4", "Paralelizar bien exigió cuidar los números aleatorios y el estado compartido."),
                 ("5", "Medir sin validar no sirve: la versión más rápida fue la menos fiel cerca del umbral.")],

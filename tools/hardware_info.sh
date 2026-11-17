@@ -22,7 +22,7 @@ else
   echo "memoria: $(free -h | awk '/Mem:/{print $2}')"
 fi
 echo "g++: $(${CXX_BIN:-g++} --version 2>/dev/null | head -1)"
-echo "mpi: $(mpirun --version 2>/dev/null | head -1)"
+echo "mpi: $(mpirun --version 2>&1 | head -1)"
 echo "python: $(python3 --version 2>&1)"
 python3 -c "import numpy, pandas; print('numpy:', numpy.__version__, '/ pandas:', pandas.__version__)" 2>/dev/null
 echo "banderas C++: ${COMPILADOR#*| } (-fopenmp en OpenMP)"

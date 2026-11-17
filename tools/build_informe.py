@@ -32,12 +32,12 @@ AUTORES = "Samuel Marroquin · Juan Esteban Ramírez"
 CURSO = "Computación de Alto Desempeño (HPC) 2026-2 · Universidad de Medellín"
 
 CSS = r"""
-@page { size: A4; margin: 22mm 19mm 20mm 19mm;
+@page { size: A4; margin: 18mm 17mm 17mm 17mm;
         @bottom-center { content: counter(page); font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 8.5pt; color: #6b7280; }
         @top-right { content: "Paralelización de un modelo de malaria — HPC 2026-2"; font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-size: 7.5pt; color: #9ca3af; } }
 @page :first { margin: 0; @bottom-center { content: none; } @top-right { content: none; } }
 * { box-sizing: border-box; }
-html { font-size: 10.2pt; }
+html { font-size: 9.8pt; }
 body { font-family: Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937; line-height: 1.5; margin: 0;
        -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .portada { height: 297mm; width: 210mm; background: linear-gradient(150deg, #0b2545 0%, #13315c 55%, #134074 100%); color: #fff;
@@ -63,12 +63,12 @@ code { font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, 'DejaVu Sans M
        padding: .2mm 1mm; border-radius: 1mm; color: #13315c; }
 strong { color: #111827; }
 hr { display: none; }
-table { border-collapse: collapse; width: 100%; margin: 2.5mm 0 5mm; font-size: 8.6pt; page-break-inside: avoid; }
+table { border-collapse: collapse; width: 100%; margin: 2.5mm 0 5mm; font-size: 8.4pt; } tr { break-inside: avoid; } thead { display: table-header-group; }
 thead th { background: #0b2545; color: #fff; font-weight: 600; padding: 1.8mm 2.2mm; text-align: left; border: 0; }
 tbody td { padding: 1.5mm 2.2mm; border-bottom: .2mm solid #e5e7eb; vertical-align: top; }
 tbody tr:nth-child(even) td { background: #f6f8fb; }
 figure { margin: 4mm 0 5mm; text-align: center; page-break-inside: avoid; }
-figure img { max-width: 100%; max-height: 118mm; border: .25mm solid #e5e7eb; border-radius: 1.5mm; padding: 1.5mm; background: #fff; }
+figure img { max-width: 100%; max-height: 92mm; border: .25mm solid #e5e7eb; border-radius: 1.5mm; padding: 1.5mm; background: #fff; }
 figcaption { font-size: 8.4pt; color: #4b5563; margin-top: 1.6mm; text-align: center; padding: 0 6mm; line-height: 1.4; }
 blockquote { margin: 3mm 0; padding: 2.5mm 4mm; background: #fff7ed; border-left: 1.1mm solid #ee6c4d; border-radius: 1mm; font-size: 9.2pt; }
 blockquote p { margin: 0; }
