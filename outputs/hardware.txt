@@ -1,0 +1,21 @@
+fecha: 2026-11-17T00:19:38
+equipo: INGENIERO
+so: Ubuntu 26.04.1 LTS / kernel 6.18.33.2-microsoft-standard-WSL2
+CPU(s): 8
+Model name: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+Thread(s) per core: 2
+Core(s) per socket: 4
+Socket(s): 1
+L1d cache: 192 KiB (4 instances)
+L1i cache: 128 KiB (4 instances)
+L2 cache: 5 MiB (4 instances)
+L3 cache: 8 MiB (1 instance)
+nucleos_rendimiento: 4
+nucleos_eficiencia: 0
+memoria: 3.7Gi
+g++: g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0
+mpi: 
+python: Python 3.14.4
+numpy: 2.5.5 / pandas: 3.1.1
+banderas C++: -O3 -march=native -std=c++17 -Wall -Wextra -Wpedantic (-fopenmp en OpenMP)
+gpu: sin GPU NVIDIA en este equipo (CuPy/CUDA se miden aparte)

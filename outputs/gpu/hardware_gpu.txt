@@ -1,0 +1,5 @@
+gpu: Tesla T4, 15360 MiB, 580.82.07
+cupy: 14.0.1
+cuda_runtime: 13000
+cpu_host: x86_64
+equipo: Google Colab
