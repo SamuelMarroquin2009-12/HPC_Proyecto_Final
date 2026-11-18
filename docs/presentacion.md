@@ -69,21 +69,21 @@
 
 **Figura:** `outputs/figures/G2_validacion_amazonia.png`
 
-**Notas del orador:** El nivel exacto es posible porque cada FILA del tablero tiene su propio flujo de números aleatorios. La validación detectó dos efectos reales: un sesgo de ~0,03 % en el generador binomial estándar de C++ y una desviación grande del muestreo aproximado de NumPy cerca del umbral (P. falciparum en Pacífico: +8 % en el tamaño final y 100 % de los meses dentro de la banda).
+**Notas del orador:** El nivel exacto es posible porque cada FILA del tablero tiene su propio flujo de números aleatorios. La validación detectó dos efectos reales: un sesgo de ~0,03 % en el generador binomial estándar de C++, y un error en el muestreo aproximado ORIGINAL de NumPy (daba unas 7 veces más casos cerca del umbral), que corregimos usando la binomial exacta.
 
 ## Diapositiva 7 — Python puro y NumPy: las referencias
 
-**Parámetros:** Workers: 1 · Python puro: bucles celda a celda · NumPy: tablero completo de una vez · Muestreo NumPy: aproximado
+**Parámetros:** Workers: 1 · Python puro: bucles celda a celda · NumPy: tablero completo de una vez · Muestreo NumPy: binomial exacta
 
 - Python puro es la referencia de corrección; solo se mide en tableros pequeños
 - NumPy es 11,4 veces más rápido que Python puro
-- NumPy es más rápido que C++ secuencial (7,32 s vs 18,36 s en Pacífico): su muestreo aproximado es más barato
+- NumPy es más rápido que C++ secuencial (7,32 s vs 18,36 s en Pacífico): su binomial vectorizada es más barata
 
 **Cifras destacadas:** **×11,4** NumPy vs Python puro · **×2,5** NumPy vs C++ secuencial
 
 **Figura:** `outputs/figures/P1_paradigmas_por_region.png`
 
-**Notas del orador:** Ojo: la ventaja de NumPy sobre C++ no es del lenguaje sino del algoritmo de muestreo, y tiene un costo en fidelidad cerca del umbral epidémico.
+**Notas del orador:** Ojo: la ventaja de NumPy sobre C++ no es del lenguaje. El perfilador muestra que C++ gasta el 20 % del tiempo solo en preparar los parámetros de cada sorteo binomial; NumPy sortea el tablero completo de una vez.
 
 ## Diapositiva 8 — Python en paralelo: multiprocessing
 
@@ -138,7 +138,7 @@
 
 **Figura:** `outputs/figures/P4a_lgamma.png`
 
-**Notas del orador:** Es la decisión de implementación con más impacto. Lección: el cuello de botella puede estar en estado compartido escondido dentro de una biblioteca.
+**Notas del orador:** En las pruebas de desarrollo el efecto fue grande; en este portátil fue pequeño (depende del procesador). La decisión con más impacto en nuestros datos fue el kernel CUDA propio frente a CuPy. Lección: el cuello de botella puede estar en estado compartido escondido dentro de una biblioteca.
 
 ## Diapositiva 12 — MPI: memoria distribuida
 
@@ -195,7 +195,7 @@
 - **multiprocessing:** Muchas réplicas o barridos de parámetros. Sin comunicación, casi lineal.
 - **OpenMP:** Una simulación exacta en un computador multinúcleo. Mínimo esfuerzo.
 - **MPI:** Tableros que no caben en un equipo, o un clúster.
-- **GPU:** Tableros grandes. La GPU conviene a partir del tamaño de cruce indicado en la sección 7.3; por debajo, la CPU es más rápida y más simple.
+- **GPU:** Simulaciones repetidas o tableros grandes. La GPU gana a la CPU desde L = 30 (Amazonía).
 - **NumPy:** Prototipo rápido. Validar cerca del umbral epidémico.
 
 **Notas del orador:** El problema está limitado por el cómputo (el sorteo aleatorio), no por la memoria: los tableros caben en caché.
@@ -204,9 +204,9 @@
 
 - **1:** El mismo modelo corre en 9 paradigmas con resultados verificados.
 - **2:** Speedup máximo vs C++ secuencial: ×2,35 en CPU (4 núcleos) y ×43,04 en GPU.
-- **3:** La referencia importa: NumPy vs C++ mide sobre todo el algoritmo de muestreo.
+- **3:** La referencia importa: NumPy le gana a C++ secuencial por su binomial vectorizada, no por el lenguaje.
 - **4:** Paralelizar bien exigió cuidar los números aleatorios y el estado compartido.
-- **5:** Medir sin validar no sirve: la versión más rápida fue la menos fiel cerca del umbral.
+- **5:** Medir sin validar no sirve: la validación encontró y corrigió un error real en la versión NumPy original.
 
 **Notas del orador:** Limitaciones: tableros pequeños, MPI en un solo equipo, CPU y GPU en máquinas distintas, modelo sin control ni tratamiento.
 
@@ -245,13 +245,13 @@
    Dos referencias: C++ secuencial (comparación justa entre paradigmas) y NumPy (ganancia práctica para quien usa Python). En multiprocessing, el mismo lote de réplicas con 1 proceso.
 
 6. **¿Qué dice la ley de Amdahl y qué fracción paralela obtuvieron?**
-   Que el speedup está limitado por la parte que no se paraleliza: S = 1 / ((1 − f) + f/p). Obtuvimos f = [RESULTADO].
+   Que el speedup está limitado por la parte que no se paraleliza: S = 1 / ((1 − f) + f/p). Ajustando nuestras mediciones: f = 0,644 en OpenMP, 0,515 en MPI y 0,816 en multiprocessing. El perfilador dice que más del 99 % del código es paralelizable: la diferencia la pone el portátil (frecuencia y temperatura), no el código.
 
 7. **¿Diferencia entre Amdahl y Gustafson?**
    Amdahl fija el tamaño del problema (escalabilidad fuerte); Gustafson lo hace crecer con los procesadores (escalabilidad débil), y por eso predice speedups mayores.
 
 8. **¿Qué scheduling usaron en OpenMP y por qué?**
-   Partimos de static porque todas las filas tienen el mismo número de celdas (sin costo de planificación, buena localidad). Lo medimos contra dynamic y guided: [RESULTADO]. Si dynamic gana, es porque el costo del sorteo depende del estado de cada celda y la carga por fila no es uniforme.
+   Partimos de static porque todas las filas tienen el mismo número de celdas (sin costo de planificación, buena localidad). Lo medimos contra dynamic y guided: la diferencia fue de apenas un 2 %, dentro del ruido. Si dynamic gana, es porque el costo del sorteo depende del estado de cada celda y la carga por fila no es uniforme.
 
 9. **¿Cómo evitan las condiciones de carrera?**
    Con doble tablero: todos leen del tablero actual y cada hilo escribe solo en sus filas del siguiente. No hay bloqueos. Además, cada fila tiene su propio generador aleatorio.
@@ -272,4 +272,4 @@
    Tres niveles: invariantes de conservación, igualdad exacta entre las versiones de C++ y comparación estadística entre lenguajes con varias réplicas.
 
 15. **¿Qué paradigma recomendarían a un epidemiólogo?**
-   Para estudiar incertidumbre con muchas réplicas, el ensamble con procesos. Para una simulación grande en un solo equipo, OpenMP. MPI o GPU solo cuando el tablero crezca mucho. [RESULTADO: confirmar con datos]
+   Si tiene GPU, el kernel CUDA: fue el más rápido en todos los tamaños. En CPU: para muchas réplicas, multiprocessing (sin comunicación); para una sola simulación exacta, OpenMP, que es lo más sencillo de programar. MPI solo con un clúster o tableros que no quepan en un equipo.

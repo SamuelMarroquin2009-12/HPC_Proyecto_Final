@@ -87,19 +87,19 @@ SLIDES = [
          kpis=[(f"{v('n_validos')}/{v('n_archivos')}", "archivos que cumplen los invariantes"),
                (v("cpp_banda_min") + " %", "meses de C++ dentro de la banda de referencia")],
          n="El nivel exacto es posible porque cada FILA del tablero tiene su propio flujo de números aleatorios. La validación detectó "
-           "dos efectos reales: un sesgo de ~0,03 % en el generador binomial estándar de C++ y una desviación grande del muestreo "
-           f"aproximado de NumPy cerca del umbral ({v('numpy_peor').replace('*', '')}).",
+           "dos efectos reales: un sesgo de ~0,03 % en el generador binomial estándar de C++, y un error en el muestreo aproximado "
+           "ORIGINAL de NumPy (daba unas 7 veces más casos cerca del umbral), que corregimos usando la binomial exacta.",
          f="G2_validacion_amazonia.png"),
 
     dict(tipo="tecnica", k="Técnica 1", t="Python puro y NumPy: las referencias",
          chips=[("Workers", "1"), ("Python puro", "bucles celda a celda"), ("NumPy", "tablero completo de una vez"),
-                ("Muestreo NumPy", "aproximado")],
+                ("Muestreo NumPy", "binomial exacta")],
          p=["Python puro es la referencia de corrección; solo se mide en tableros pequeños",
             f"NumPy es {v('ratio_pure_numpy')} veces más rápido que Python puro",
-            f"NumPy es {v('numpy_vs_serial')} que C++ secuencial ({v('t_numpy_p')} s vs {v('t_serial_p')} s en {RP}): su muestreo aproximado es más barato"],
+            f"NumPy es {v('numpy_vs_serial')} que C++ secuencial ({v('t_numpy_p')} s vs {v('t_serial_p')} s en {RP}): su binomial vectorizada es más barata"],
          kpis=[("×" + v("ratio_pure_numpy"), "NumPy vs Python puro"), ("×" + v("ratio_serial_numpy"), "NumPy vs C++ secuencial")],
-         n="Ojo: la ventaja de NumPy sobre C++ no es del lenguaje sino del algoritmo de muestreo, y tiene un costo en fidelidad "
-           "cerca del umbral epidémico.", f="P1_paradigmas_por_region.png"),
+         n="Ojo: la ventaja de NumPy sobre C++ no es del lenguaje. El perfilador muestra que C++ gasta el 20 % del tiempo solo en "
+           "preparar los parámetros de cada sorteo binomial; NumPy sortea el tablero completo de una vez.", f="P1_paradigmas_por_region.png"),
 
     dict(tipo="tecnica", k="Técnica 2", t="Python en paralelo: multiprocessing",
          chips=[("Estrategia 1 (guía)", "réplicas completas"), ("Estrategia 2", "franjas + memoria compartida"),
@@ -138,8 +138,9 @@ SLIDES = [
             "Los procesos de MPI no comparten memoria: no lo sufren",
             "Solución: la versión sin estado compartido (lgamma_r). Mismos resultados"],
          kpis=[("×" + v("lgamma_antes"), "speedup antes"), ("×" + v("lgamma_despues"), f"speedup después ({v('lgamma_hilos')} hilos, {RP})")],
-         n="Es la decisión de implementación con más impacto. Lección: el cuello de botella puede estar en estado compartido "
-           "escondido dentro de una biblioteca.", f="P4a_lgamma.png"),
+         n="En las pruebas de desarrollo el efecto fue grande; en este portátil fue pequeño (depende del procesador). La decisión "
+           "con más impacto en nuestros datos fue el kernel CUDA propio frente a CuPy. Lección: el cuello de botella puede estar "
+           "en estado compartido escondido dentro de una biblioteca.", f="P4a_lgamma.png"),
 
     dict(tipo="tecnica", k="Técnica 5", t="MPI: memoria distribuida",
          chips=[("Se reparte", "franjas de filas"), ("Procesos", "1 … " + v("p_mpi")), ("Comunicación", "solo filas de borde"),
@@ -184,16 +185,16 @@ SLIDES = [
          cards=[("multiprocessing", "Muchas réplicas o barridos de parámetros. Sin comunicación, casi lineal."),
                 ("OpenMP", "Una simulación exacta en un computador multinúcleo. Mínimo esfuerzo."),
                 ("MPI", "Tableros que no caben en un equipo, o un clúster."),
-                ("GPU", "Tableros grandes. " + (v("gpu_recomendacion") if not v("gpu_recomendacion").startswith("[") else PEND)),
+                ("GPU", "Simulaciones repetidas o tableros grandes. " + v("gpu_cruce_corto") + "."),
                 ("NumPy", "Prototipo rápido. Validar cerca del umbral epidémico.")],
          n="El problema está limitado por el cómputo (el sorteo aleatorio), no por la memoria: los tableros caben en caché."),
 
     dict(tipo="tarjetas", k="Cierre", t="Conclusiones",
          cards=[("1", f"El mismo modelo corre en {v('n_paradigmas')} paradigmas con resultados verificados."),
                 ("2", f"Speedup máximo vs C++ secuencial: ×{v('smax_cpu')} en CPU ({v('nucleos')} núcleos) y ×{v('smax_serial')} en GPU."),
-                ("3", "La referencia importa: NumPy vs C++ mide sobre todo el algoritmo de muestreo."),
+                ("3", "La referencia importa: NumPy le gana a C++ secuencial por su binomial vectorizada, no por el lenguaje."),
                 ("4", "Paralelizar bien exigió cuidar los números aleatorios y el estado compartido."),
-                ("5", "Medir sin validar no sirve: la versión más rápida fue la menos fiel cerca del umbral.")],
+                ("5", "Medir sin validar no sirve: la validación encontró y corrigió un error real en la versión NumPy original.")],
          n="Limitaciones: tableros pequeños, MPI en un solo equipo, CPU y GPU en máquinas distintas, modelo sin control ni tratamiento."),
 
     dict(tipo="portada", t="Demostración en vivo y preguntas",
@@ -213,11 +214,11 @@ QA = [
     ("¿Respecto a qué calculan el speedup?",
      "Dos referencias: C++ secuencial (comparación justa entre paradigmas) y NumPy (ganancia práctica para quien usa Python). En multiprocessing, el mismo lote de réplicas con 1 proceso."),
     ("¿Qué dice la ley de Amdahl y qué fracción paralela obtuvieron?",
-     "Que el speedup está limitado por la parte que no se paraleliza: S = 1 / ((1 − f) + f/p). Obtuvimos f = [RESULTADO]."),
+     f"Que el speedup está limitado por la parte que no se paraleliza: S = 1 / ((1 − f) + f/p). Ajustando nuestras mediciones: f = {v('f_omp')} en OpenMP, {v('f_mpi')} en MPI y {v('f_mp')} en multiprocessing. El perfilador dice que más del 99 % del código es paralelizable: la diferencia la pone el portátil (frecuencia y temperatura), no el código."),
     ("¿Diferencia entre Amdahl y Gustafson?",
      "Amdahl fija el tamaño del problema (escalabilidad fuerte); Gustafson lo hace crecer con los procesadores (escalabilidad débil), y por eso predice speedups mayores."),
     ("¿Qué scheduling usaron en OpenMP y por qué?",
-     "Partimos de static porque todas las filas tienen el mismo número de celdas (sin costo de planificación, buena localidad). Lo medimos contra dynamic y guided: [RESULTADO]. Si dynamic gana, es porque el costo del sorteo depende del estado de cada celda y la carga por fila no es uniforme."),
+     "Partimos de static porque todas las filas tienen el mismo número de celdas (sin costo de planificación, buena localidad). Lo medimos contra dynamic y guided: la diferencia fue de apenas un 2 %, dentro del ruido. Si dynamic gana, es porque el costo del sorteo depende del estado de cada celda y la carga por fila no es uniforme."),
     ("¿Cómo evitan las condiciones de carrera?",
      "Con doble tablero: todos leen del tablero actual y cada hilo escribe solo en sus filas del siguiente. No hay bloqueos. Además, cada fila tiene su propio generador aleatorio."),
     ("¿Qué se comunica en MPI y con qué frecuencia?",
@@ -231,7 +232,7 @@ QA = [
     ("¿Cómo saben que las versiones paralelas son correctas?",
      "Tres niveles: invariantes de conservación, igualdad exacta entre las versiones de C++ y comparación estadística entre lenguajes con varias réplicas."),
     ("¿Qué paradigma recomendarían a un epidemiólogo?",
-     "Para estudiar incertidumbre con muchas réplicas, el ensamble con procesos. Para una simulación grande en un solo equipo, OpenMP. MPI o GPU solo cuando el tablero crezca mucho. [RESULTADO: confirmar con datos]"),
+     "Si tiene GPU, el kernel CUDA: fue el más rápido en todos los tamaños. En CPU: para muchas réplicas, multiprocessing (sin comunicación); para una sola simulación exacta, OpenMP, que es lo más sencillo de programar. MPI solo con un clúster o tableros que no quepan en un equipo."),
 ]
 
 DEEP = [
